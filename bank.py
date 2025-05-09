@@ -1,3 +1,4 @@
+
 with open ("Admin.txt","w") as file:
     file.write("Admin123,pass123\n")
 
@@ -113,7 +114,7 @@ def withdraw():
          for ACC2 in ACC1:
             ACC3 =ACC2.strip().split(',')
          if Account_Number == ACC3[0]:
-            amount = float(input("Enter the Amount to Deposit: Rs."))
+            amount = float(input("Enter the Amount to withdraw : Rs."))
             if amount > 0 and amount < float(ACC3[3]):
                
                     ACC3[3]=float(ACC3[3])-amount
@@ -187,7 +188,7 @@ def main_menu():
                 User_Name = input(f"{'Enter User Name' :<25} :")
                 User_Password = input(f"{'Enter User Password' :<25} :")
                 if User_Name=="Admin123" and User_Password=="pass123":
-                  while True:  
+                   while True:  
                     print("\n===Admin_view===\n")
                     print("\n---Banking Menu (Admin)---\n")        
                     print("1.create_account")
@@ -217,7 +218,8 @@ def main_menu():
                         exit()
                     else:
                         print("Invalid choice.")
-    
+                else:
+                    print("Your user name & password are in correct!.")
 
         elif choice == '2':
             User_Name = input(f"{'Enter User Name' :<25} :")
@@ -225,11 +227,9 @@ def main_menu():
 
             with open("ACC_Details.txt", "r") as file:
                     for line in file:
-                        data = line.strip().split(",")
-                        if data[2] == User_Name and data[1] == User_Password:
+                         data = line.strip().split(",")
+                         if data[2] == User_Name and data[1] == User_Password:
                             while True: 
-
-           
                                     print("\n====Banking Menu====\n")
                                     print("1.deposit")
                                     print("2.withdraw")
@@ -255,7 +255,8 @@ def main_menu():
                                         print("Thanks for using this app.")
                                         exit()
         
-                              
+                         else:
+                             print("your user_name & password are incorrect!.")                     
                             
               
 
