@@ -187,6 +187,7 @@ def main_menu():
                 User_Name = input(f"{'Enter User Name' :<25} :")
                 User_Password = input(f"{'Enter User Password' :<25} :")
                 if User_Name=="Admin123" and User_Password=="pass123":
+                  while True:  
                     print("\n===Admin_view===\n")
                     print("\n---Banking Menu (Admin)---\n")        
                     print("1.create_account")
@@ -197,9 +198,8 @@ def main_menu():
                     print("6.exit")
                     choice = input("Choose an option: ")
                     if choice == "1":
-                        Create_Account()
+                        Create_Account()                      
                     elif choice == '2':
-                        print("\n===deposit===\n")
                         deposit()
                     elif choice == "3":
                             print("\n===withdraw===\n")
@@ -207,9 +207,11 @@ def main_menu():
                     elif choice == "4":
                             print("\n===check_balance===\n")
                             check_balance() 
+
                 # elif choice == "5":
                 #        print("\n===show_transaction_histry===\n")
                 #         show_transaction_histry()
+                          
                     elif choice ==  "6":
                         print("Thanks for using this app.")
                         exit()
@@ -220,10 +222,14 @@ def main_menu():
         elif choice == '2':
             User_Name = input(f"{'Enter User Name' :<25} :")
             User_Password = input(f"{'Enter User Password' :<25} :")
-            with open("ACC_Details.txt","r") as file:
-                for line in file:
-                     list=line.split(",")
-                     if list[2]==User_Name and line[1]==User_Password:
+
+            with open("ACC_Details.txt", "r") as file:
+                    for line in file:
+                        data = line.strip().split(",")
+                        if data[2] == User_Name and data[1] == User_Password:
+                            while True: 
+
+           
                                     print("\n====Banking Menu====\n")
                                     print("1.deposit")
                                     print("2.withdraw")
@@ -249,7 +255,7 @@ def main_menu():
                                         print("Thanks for using this app.")
                                         exit()
         
-            print("error")                    
+                              
                             
               
 
