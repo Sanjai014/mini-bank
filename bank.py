@@ -44,7 +44,7 @@ def Create_Account():
 
     Account_Number = "ACC" + str(new).zfill(3)
     user_ID = "U_ID" + str(new).zfill(4)
-
+    # customer_ID="C_ID" + str(new).zfill(4)
     
     with open("Acc_No.txt", 'w') as file:
         file.write(Account_Number)
@@ -57,7 +57,11 @@ def Create_Account():
     with open("User_Details.txt", "a") as file:
         file.write(f"{user_ID},{User_Name},{User_Password},\n")
 
-    
+    # with open("customer_Details.txt","a") as file:
+    #     file.write(f"{customer_ID},{user_ID},{Account_Number},{User_Password},{User_Name},{balance}\n")
+
+    #  customers=()
+    #  customers[customer_ID]={"Account_Number","user_ID"}
 
     print("\nAccount Created Successfully")
     print(f"\nAccount_number : {Account_Number}")
@@ -121,11 +125,18 @@ def withdraw():
                     print("Withdrawal successful.")
                     from datetime import datetime
                     date_time_now = datetime.now()
-                    
                     with open("Transaction_Details.txt", "a") as file:
-                        file.write(f"{date_time_now},{Account_Number} ,deposit,{amount},{ACC3[3]},\n")
+                        file.write(f"{date_time_now},{Account_Number},withdraw,{amount},{ACC3[3]},\n")
+
+                      
+            if ACC3[0] > 5000:
+                print("Warning: Balance below Rs. 5000!")
+                      
+                   
             else:
                     print("Insufficient balance.")
+
+                
          else:
             print("Incorrect  Account Number.")
    
@@ -147,35 +158,40 @@ def check_balance():
 
 
 # def show_transaction_histry():
-#     print("\n===== Transaction History =====\n")
-#     Account_Number = input("Enter the Account Number: ")
-#     with open("Transaction_Details.txt", "r") as file:
-#         lines=file.readline()
-#         for i in range(len(lines)):
-#           list=lines[i].split(",") 
-#           if Account_Number==list[1]:
-#              print(f"-{list[1]},{list[2]}")
-#           else:
-#               print("error")
-#             # found = False
-#             # for line in file:
-#             #     if Account_Number in line:
-#             #         print(line.strip())
-#             #         found = True
-#             # if not found:
-#             #     print("No transactions found for this account.")
+#      print("\n===== Transaction History =====\n")
+#      Account_Number = input("Enter the Account Number: ")
+#      with open("Transaction_Details.txt", "r") as file:
+#          lines=file.readline()
+#          for i in range(len(lines)):
+#            list=lines[i].split(",") 
+#            if Account_Number==list[1]:
+#               print(f"-{list[1]},{list[2]}")
+#            else:
+#                print("error")
+
    
 # show_transaction_histry()
-def Admin_function():
-    User_Name = input(f"{'Enter User Name' :<25} :")
-    User_Password = input(f"{'Enter User Password' :<25} :")
-   
 
 
+    
+#  def Count_Customers(): 
+#      global customers
+#       return
+#          len(customers)
+#           print("Total Customers:len(customers)")
+#  Count_Customers()
 
+def  display_customer_accounts():
+     User_Name = input(f"{'Enter User Name' :<25} :")
+     User_Password = input(f"{'Enter User Password' :<25} :")
 
-
-
+      with open("ACC_Details.txt", "r") as file:
+                    for line in file:
+                         data = line.strip().split(",")
+                         if data[2] == User_Name and data[1] == User_Password:
+                            print("customer_accounts_details:ACC_Details.txt")
+                         else:
+                             print("your user_name OR password in correct!.")
 
 def main_menu():
     while True:
@@ -196,12 +212,15 @@ def main_menu():
                     print("3.withdraw")
                     print("4.check_balance")
                     print("5.show_transaction_histry")
-                    print("6.exit")
+                    print("6.display_customer_accounts")
+                    print("7.exit")
                     choice = input("Choose an option: ")
                     if choice == "1":
-                        Create_Account()                      
+                         print("\n===Create_Account===\n")
+                         Create_Account()                      
                     elif choice == '2':
-                        deposit()
+                         print("\n===deposit===\n")
+                         deposit()
                     elif choice == "3":
                             print("\n===withdraw===\n")
                             withdraw()
@@ -212,8 +231,10 @@ def main_menu():
                 # elif choice == "5":
                 #        print("\n===show_transaction_histry===\n")
                 #         show_transaction_histry()
-                          
-                    elif choice ==  "6":
+                    elif choice =="6"
+                         print("\n====display_customer_accounts====\n")
+                         display_customer_accounts() 
+                    elif choice ==  "7":
                         print("Thanks for using this app.")
                         exit()
                     else:
@@ -252,11 +273,11 @@ def main_menu():
                                         #print("\n===show_transaction_histry===\n")
                                     #      show_transaction_histry()
                                     elif choice ==  "5":
-                                        print("Thanks for using this app.")
+                                        print("Thanks For Using This Bank App.")
                                         exit()
         
                          else:
-                             print("your user_name & password are incorrect!.")                     
+                             print("your user_name OR password are incorrect!.")                     
                             
               
 
